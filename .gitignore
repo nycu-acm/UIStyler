@@ -1,0 +1,19 @@
+cp*/
+checkpoints*/
+*.pth
+*.bmp
+*.zip
+*.pyc
+*.user
+*.xlsx
+
+# Dataset
+original*/
+BUSBRA*/
+BUSI*/
+UCLM*/
+UDIAT*/
+BUS-UCLM*/
+Dataset_BUSI_with_GT*/
+DatasetB2*/
+few_shot*/
