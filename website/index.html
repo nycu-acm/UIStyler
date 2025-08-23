@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI-Styler</title>
+  <meta name="description" content="UI-Styler project page">
+  <meta property="og:title" content="UI-Styler">
+  <meta property="og:description" content="Class-aware, unpaired image translation for ultrasound cross-device robustness.">
+  <meta property="og:image" content="assets/img/teaser_problem.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">UI-Styler</div>
+      <div class="links">
+        <a class="btn" href="#abstract">Abstract</a>
+        <a class="btn" href="#method">Methodology</a>
+        <a class="btn" href="#results">Experiments</a>
+        <a class="btn" href="#resources">Resources</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="badge-row"><span class="badge">Ultrasound • Unpaired Image Translation • Class-aware Prompts • Domain Adaptation</span></div>
+
+      <h1 class="title-main">UI-Styler</h1>
+      <h2 class="title-sub">Ultrasound Image Style Transfer with <span class="hl1">Class-Aware Prompts</span> for Cross-Device Diagnosis Using a <span class="hl2">Frozen Black-Box Inference Network</span></h2>
+
+      <div class="authors">
+        <a href="https://scholar.google.com/citations?user=UUT7AlUAAAAJ" target="_blank" rel="noopener">Nhat-Tuong Do-Tran</a>,
+        <a href="https://scholar.google.com/citations?user=5xFNBH4AAAAJ&hl=en" target="_blank" rel="noopener">Ngoc-Hoang-Lam Le</a>,
+        <a href="https://scholar.google.com/citations?user=xTdexhsAAAAJ&hl=zh-TW" target="_blank" rel="noopener">Ching-Chun Huang</a>
+      </div>
+
+      <div class="affil">Department of Computer Science, National Yang Ming Chiao Tung University</div>
+
+      <div class="logo-row">
+        <img src="assets/img/logo_nycu.png" alt="NYCU Logo" style="height:100px; width:auto;">
+        <img src="assets/img/logo_acm.png" alt="ACM Logo" style="height:100px; width:auto;">
+      </div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="#" aria-disabled="true" target="_blank" rel="noopener">Paper (coming soon)</a>
+        <a class="btn primary" href="https://github.com/nycu-acm/UIStyler" target="_blank" rel="noopener">Code</a>
+        <a class="btn primary" href="#" aria-disabled="true" target="_blank" rel="noopener">Video (coming soon)</a>
+      </div>
+
+      <div class="hero-fig fig">
+        <img src="assets/img/teaser_problem.png" alt="Problem setting overview">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABSTRACT + CONTRIBUTION -->
+    <section id="abstract" class="section">
+      <div class="container">
+        <h2>📝 Abstract</h2>
+        <p>The appearance of ultrasound images varies across acquisition devices, causing domain shifts that degrade the performance of fixed black-box downstream inference models when reused. To mitigate this issue, it is practical to develop unpaired image translation (UIT) methods that effectively align the statistical distributions between source and target domains, particularly under the constraint of a reused inference-blackbox setting. However, existing UIT approaches often overlook class-specific semantic alignment during domain adaptation, resulting in misaligned content-class mappings that can impair diagnostic accuracy. To address this limitation, we propose UI-Styler, a novel ultrasound-specific, class-aware image style transfer framework. UI-Styler leverages a pattern-matching mechanism to transfer texture patterns embedded in the target images onto source images while preserving the source structural content. In addition, we introduce a class-aware prompting strategy guided by pseudo labels of the target domain, which enforces accurate semantic alignment with diagnostic categories. Extensive experiments on ultrasound cross-device tasks demonstrate that UI-Styler consistently outperforms existing UIT methods, achieving state-of-the-art performance in distribution distance and downstream tasks, such as classification and segmentation.</p>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <h3 id="contribution">Contribution</h3>
+              <div class="fig">
+                <img src="assets/img/contribution.png" alt="Contribution overview" 
+                    style="display:block; margin:0 auto; max-width:70%; height:auto;">
+              </div>
+              <p class="caption">Overview of our contributions. UI-Styler aligns domain styles and class semantics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHOD -->
+    <section id="method" class="section">
+      <div class="container">
+        <h2>📘 Methodology</h2>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <h3>🧪 Inference-Blackbox Setting</h3>
+              <div class="fig"><img src="assets/img/settings.png" alt="Inference black-box setting"></div>
+              <p class="caption">We assume a frozen downstream model (black-box) and optimize prompts/translation without modifying the backbone.</p>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card">
+              <h3>🏗️ UI-Styler Architecture</h3>
+              <div class="fig"><img src="assets/img/Fig2.png" alt="Architecture of UI-Styler"></div>
+              <p class="caption">Dual-level stylization (domain + category) with pattern matching and class-aware prompting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="results" class="section">
+      <div class="container">
+        <h2>🧪 Experiments</h2>
+        <p class="muted" style="margin:8px 0 16px 0;">
+          We use four public ultrasound datasets: <strong>BUSBRA</strong>, <strong>BUSI</strong>, <strong>UCLM</strong>, <strong>UDIAT</strong>. 
+          See <a href="dataset/DATASET.md" target="_blank">DATASET.md</a> for download and preprocessing.
+        </p>
+        <div class="row">
+          
+          <div class="col-12">
+            <div class="card">
+              <h3>Quantitative Metrics</h3>
+              <div class="fig"><img src="assets/img/quantitative_results.png" alt="Quantitative results table"></div>
+              <p class="caption">UI-Styler achieves state-of-the-art performance across multiple cross-device transfer tasks.</p>
+            </div>
+          </div>
+          
+          <div class="col-12">
+            <div class="card">
+              <h3>Feature Space Visualization</h3>
+              <div class="fig"><img src="assets/img/tsne.png" alt="t-SNE visualization"></div>
+              <p class="caption">t-SNE on UDIAT→UCLM: class and domain alignment after full dual-level stylization.</p>
+            </div>
+          </div>
+          
+          <div class="col-12">
+            <div class="card">
+              <h3>Confidence Scores</h3>
+              <div class="fig"><img src="assets/img/confidence.png" alt="Confidence scores box plots"></div>
+              <p class="caption">Distributions of confidence scores across source→target tasks. Higher medians and tighter IQRs indicate more confident predictions.</p>
+            </div>
+          </div>
+
+
+          <div class="col-12">
+            <div class="card">
+              <h3>Visual Results</h3>
+              <div class="gallery one-col">
+                <div class="fig"><img src="assets/img/example_1.png" alt="Visual results 1"><div class="caption">Domain examples A/B.</div></div>
+                <div class="fig"><img src="assets/img/example_2.png" alt="Visual results 2"><div class="caption">Domain examples A/B.</div></div>
+                <div class="fig"><img src="assets/img/example_3.png" alt="Visual results 3"><div class="caption">Domain examples A/B.</div></div>
+                <div class="fig"><img src="assets/img/example_4.png" alt="Visual results 4"><div class="caption">Domain examples A/B.</div></div>
+              </div>
+            </div>
+          </div>
+          
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </section>
+
+    <!-- RESOURCES
+    <section id="resources" class="section">
+      <div class="container">
+        <h2>🔗 Resources</h2>
+        <ul>
+          <li><b>Code:</b> <a href="https://github.com/nycu-acm/UIStyler">github.com/nycu-acm/UIStyler</a></li>
+          <li><b>Dataset guide:</b> <a href="https://github.com/nycu-acm/UIStyler/tree/main/dataset/DATASET.md">DATASET.md</a></li>
+          <li><b>Training example:</b> <code>python train.py --source BUSBRA --target BUSI --device cuda:0</code></li>
+          <li><b>Contact:</b> open an issue on GitHub</li>
+        </ul>
+      </div>
+    </section> -->
+
+    <!-- ACKNOWLEDGMENT -->
+    <section id="acknowledgment" class="section">
+      <div class="container">
+        <h2>💌 Acknowledgment</h2>
+        <div class="card">
+          <p style="font-size: 1.05rem; line-height: 1.7; margin: 0; text-align: justify; text-justify: inter-word;">
+            We owe special thanks to our advisor <strong>Ching-Chun Huang</strong> for steady guidance and many insightful suggestions throughout this work.
+            We are also grateful to our labmate <strong>Ngoc-Hoang-Lam Le</strong> for helpful discussions and generous assistance.
+            This work was supported by the <a href="https://nycu-acm.github.io/ACM_NYCU_website/" target="_blank" rel="noopener">Applied Computing and Multimedia Lab (ACM Lab)</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© 2025 UI-Styler. Made with ❤ for the ultrasound community.</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
