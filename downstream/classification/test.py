@@ -96,23 +96,21 @@ resize_size = args.resize_size
 crop_size = args.crop_size
 transform_w = val_transform(resize_size, crop_size)
 
-def evaluate_one_folder(folder_path: str):
+def evaluate_one_folder(folder_path, acc=True):
     if not os.path.isdir(folder_path):
         raise FileNotFoundError(f"Test folder does not exist: {folder_path}")
 
     print(colored(f"\nLoading dataset from {folder_path}", "blue", force_color=True))
-    test_dataset = ImageList(folder_path, transform_w=transform_w)
-    num_classes = test_dataset.num_classes
-    print(f"Number of classes: {num_classes}")
 
+    test_dataset = ImageList(folder_path, transform_w=transform_w)
     test_loader = DataLoader(
         test_dataset, batch_size=args.bz, shuffle=False, num_workers=4, drop_last=False
     )
 
     val_acc, AUC = validate(model, test_loader, device)
-    print(colored(f"Validation accuracy: {val_acc * 100:.2f}", "green", force_color=True))
-    print(colored(f"Validation AUC: {AUC * 100:.2f}", "green", force_color=True))
+    print(colored(f"Validation accuracy: {val_acc * 100:.2f}", "red", force_color=True)) if acc is True \
+        else print(colored(f"Validation AUC: {AUC * 100:.2f}", "green", force_color=True))
 
 # ===== Evaluate at the two target folders =====
-evaluate_one_folder(acc_results_dir)
-evaluate_one_folder(auc_results_dir)
+evaluate_one_folder(acc_results_dir, acc=True)
+evaluate_one_folder(auc_results_dir, acc=False)

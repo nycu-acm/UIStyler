@@ -1,5 +1,15 @@
-# UIStyler
-UI-Styler: Ultrasound Image Style Transfer with Class-Aware Prompts for Cross-Device Diagnosis Using a Frozen Black-Box Inference Network
+# UI-Styler: Ultrasound Image Style Transfer with Class-Aware Prompts for Cross-Device Diagnosis Using a Frozen Black-Box Inference Network
+
+<div align="center">
+
+<!-- [![PWC](https://img.shields.io/badge/PDF-blue)]()
+[![PWC](https://img.shields.io/badge/Supp-7DCBFF)]()
+[![PWC](https://img.shields.io/badge/ArXiv-b31b1b)]() -->
+[![PWC](https://img.shields.io/badge/Project%20Page-0047ab)](https://nycu-acm.github.io/UIStyler/website/)
+<!-- [![PWC](https://img.shields.io/badge/Presentation-ff0000)]() -->
+<!-- [![PWC](https://img.shields.io/badge/Bibtex-CB8CEA)](#citation) -->
+
+</div>
 
 ---
 
@@ -29,20 +39,25 @@ conda activate uistyler
 ---
 
 ## 📚 Dataset
+You can download our prepared [dataset](https://drive.google.com/file/d/17uikIjUHcr4H6pFL41CYIvFzPB-t7Mo-/view?usp=sharing).  
 
-Please follow the instructions in [DATASET.md](https://github.com/nycu-acm/UIStyler/tree/main/dataset/DATASET.md) to download and preprocess the four domains (**BUSBRA**, **BUSI**, **UCLM**, **UDIAT**) into the unified structure (`full/`, `train/`, `valid/` with `imgs/` and `masks/`).
+Alternatively, Please follow the instructions in [DATASET.md](https://github.com/nycu-acm/UIStyler/tree/main/dataset/DATASET.md) to download and preprocess the four domains (**BUSBRA**, **BUSI**, **UCLM**, **UDIAT**) into the unified structure (`full/`, `train/`, `valid/` with `imgs/` and `masks/`).
 
 ---
 
 ## 🏋️ Training
 
-1. Download the [pretrained perceptual weights](https://drive.google.com/file/d/1BinnwM5AmIcVubr16tPTqxMjUCE8iu5M/view).
-2. Train (ensure `--source` ≠ `--target`):
-   
-   ```bash
-   python train.py --source BUSBRA --target BUSI --device cuda:0
-   # source and target ∈ {BUSBRA, BUSI, UCLM, UDIAT}
-   ```
+### 1. Download pretrained models
+1. [Perceptual weights](https://drive.google.com/file/d/1MlfIkZaDewn5LexCY8mHKN4qiOOXvI0b/view?usp=sharing): place `vgg_normalised.pth` in the [UIStyler](https://github.com/nycu-acm/UIStyler/tree/main) root.
+2. [Classification weights](https://drive.google.com/file/d/11xn8s2UEdw6KQicdktqFL5xS2zm1u0MS/view?usp=sharing): place `checkpoints_final` in [downstream/classification](https://github.com/nycu-acm/UIStyler/tree/main/downstream/classification).
+3. [Segmentation weights](https://drive.google.com/file/d/1wgWn9c7P71dZrVJv7_DG-aulu4jyvQZm/view?usp=sharing): place `checkpoints2` in [downstream/segmentation](https://github.com/nycu-acm/UIStyler/tree/main/downstream/segmentation).
+
+### 2. Train (ensure `--source` ≠ `--target`)
+
+```bash
+python train.py --source BUSBRA --target BUSI --device cuda:0
+# source and target ∈ {BUSBRA, BUSI, UCLM, UDIAT}
+```
 
 ---
 
