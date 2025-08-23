@@ -8,7 +8,6 @@ checkpoints*/
 *.xlsx
 
 # Dataset
-original*/
 BUSBRA*/
 BUSI*/
 UCLM*/
