@@ -6,7 +6,8 @@ checkpoints*/
 *.pyc
 *.user
 *.xlsx
-*.DS_Store
+.DS_Store
+**/.DS_Store
 
 # Dataset
 BUSBRA*/
