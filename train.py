@@ -142,7 +142,7 @@ vgg = nn.Sequential(*list(vgg.children())[:44])
 
 ### Classification Downstream ###
 cls_model = timm.create_model('timm/vit_base_patch16_224', pretrained=True, num_classes=2)
-cls_weight_path = os.path.join(args.cls_weights, f"vit_{args.target}/best.pth")
+cls_weight_path = os.path.join(args.cls_weights, f"vit_Breast-{args.target}/best.pth")
 print(colored(f"Loading Classification model {cls_weight_path}", 'red', force_color=True))
 cls_model.load_state_dict(torch.load(cls_weight_path, map_location=device))
 cls_model = cls_model.to(device)

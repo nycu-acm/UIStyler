@@ -1,6 +1,6 @@
 from ast import arg
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = '6'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 import argparse
 from pickle import FALSE, TRUE
 from statistics import mode
@@ -76,9 +76,7 @@ def main():
     # register the sam model
     opt.batch_size = args.batch_size * args.n_gpu
 
-    task = f"{args.source_name}2{args.task}"
-
-    opt.data_path = os.path.join(args.root_dir, f"cp_{task}/results")
+    opt.data_path = os.path.join(args.root_dir, f"cp_{args.source_name}2{args.task}", "results")
     source_test_dir = f"./dataset/{args.source_name}/valid.txt"
     print("test_dir", opt.data_path)
 

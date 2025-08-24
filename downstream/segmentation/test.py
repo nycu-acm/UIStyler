@@ -40,7 +40,7 @@ def main():
     parser.add_argument('-low_image_size', type=int, default=128, help='the image embedding size, 256 in SAM and MSA, 128 in SAMed and SAMUS') 
     parser.add_argument('--task', default='BUSI', help='task or dataset name')
     parser.add_argument('--vit_name', type=str, default='vit_b', help='select the vit model for the image encoder of sam')
-    parser.add_argument('--sam_ckpt', type=str, default='checkpoints/sam_vit_b_01ec64.pth', help='Pretrained checkpoint of SAM')
+    parser.add_argument('--sam_ckpt', type=str, default='downstream/segmentation/checkpoints2/sam_vit_b_01ec64.pth', help='Pretrained checkpoint of SAM')
     parser.add_argument('--batch_size', type=int, default=8, help='batch_size per gpu') # 8 # SAMed is 12 bs with 2n_gpu and lr is 0.005
     parser.add_argument('--n_gpu', type=int, default=1, help='total gpu')
     parser.add_argument('--base_lr', type=float, default=0.0001, help='segmentation network learning rate, 0.005 for SAMed, 0.0001 for MSA') #0.0006
@@ -48,8 +48,8 @@ def main():
     parser.add_argument('--warmup_period', type=int, default=250, help='Warp up iterations, only valid whrn warmup is activated')
     parser.add_argument('-keep_log', type=bool, default=False, help='keep the loss&lr&dice during training or not')
 
-    parser.add_argument("--test_dir", default="../../checkpoints/cp_BUSBRA2BUSI/results/results_4.0k")
-    parser.add_argument('--source_test_dir', default='../../../dataset/BUSBRA/valid.txt')
+    parser.add_argument("--test_dir", default="./checkpoints/cp_BUSBRA2BUSI/results/results_11.0k")
+    parser.add_argument('--source_test_dir', default='./dataset/BUSBRA/valid.txt')
     
     args = parser.parse_args()
     opt = get_config(args.task)  # please configure your hyper-parameter
@@ -57,14 +57,11 @@ def main():
     print("test_dir", args.test_dir)
 
     opt.mode = "train"
-    #opt.classes=2
     opt.visual = True
-    #opt.eval_mode = "patient"
     opt.modelname = args.modelname
     device = torch.device(opt.device)
 
      #  =============================================================== add the seed to make sure the results are reproducible ==============================================================
-
     seed_value = 300 # the number of seed
     np.random.seed(seed_value)  # set random seed for numpy
     random.seed(seed_value)  # set random seed for python
