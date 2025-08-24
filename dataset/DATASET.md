@@ -38,7 +38,7 @@ dataset/
 
 ## 🔗 Downloads
 
-This work is conducted on 4 ultrasound datasets: [BUSBRA](https://www.kaggle.com/datasets/orvile/bus-bra-a-ultrasound-dataset), [BUSI](https://www.kaggle.com/datasets/sabahesaraki/ultrasound-images-dataset), [UCLM](https://www.kaggle.com/datasets/orvile/bus-uclm-ultrasound-dataset), [UDIAT](https://www.kaggle.com/datasets/jarintasnim090/udiat-data).
+This work is conducted on 4 ultrasound datasets: [BUSBRA](https://www.kaggle.com/datasets/orvile/bus-bra-a-breast-ultrasound-dataset), [BUSI](https://www.kaggle.com/datasets/sabahesaraki/breast-ultrasound-images-dataset), [UCLM](https://www.kaggle.com/datasets/orvile/bus-uclm-breast-ultrasound-dataset), [UDIAT](https://www.kaggle.com/datasets/jarintasnim090/udiat-data).
 
 📌 **After downloading**, place each dataset inside [dataset/original](https://github.com/nycu-acm/UIStyler/tree/main/dataset/original).
 
